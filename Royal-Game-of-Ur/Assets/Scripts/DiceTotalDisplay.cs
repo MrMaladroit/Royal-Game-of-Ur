@@ -16,7 +16,7 @@ public class DiceTotalDisplay : MonoBehaviour
 
     void Update()
     {
-        if (theDiceRoller.doneRolling == false)
+        if (theDiceRoller.IsDoneRolling == false)
         {
             displayTotalText.text = "= " + theDiceRoller.DiceTotal;
         }

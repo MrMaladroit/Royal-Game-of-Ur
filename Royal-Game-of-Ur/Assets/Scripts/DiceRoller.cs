@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class DiceRoller : MonoBehaviour
@@ -12,7 +10,7 @@ public class DiceRoller : MonoBehaviour
 
     public int[] DiceValues;
     public int DiceTotal;
-    public bool doneRolling;
+    public bool IsDoneRolling;
 
     private void Start()
     {
@@ -21,7 +19,7 @@ public class DiceRoller : MonoBehaviour
 
     public void NewTurn()
     {
-        doneRolling = false;
+        IsDoneRolling = false;
     }
     public void RollTheDice()
     {
@@ -41,9 +39,7 @@ public class DiceRoller : MonoBehaviour
                 this.transform.GetChild(i).GetComponent<Image>().sprite = DiceImageOne[Random.Range(0, DiceImageOne.Length)];
             }
 
-            doneRolling = true;
+            IsDoneRolling = true;
         }
-        Debug.Log("Rolled: " + DiceTotal);
     }
-  
 }
