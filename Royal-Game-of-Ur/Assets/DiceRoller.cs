@@ -12,12 +12,17 @@ public class DiceRoller : MonoBehaviour
 
     public int[] DiceValues;
     public int DiceTotal;
+    public bool doneRolling;
 
     private void Start()
     {
         DiceValues = new int[4];
     }
 
+    public void NewTurn()
+    {
+        doneRolling = false;
+    }
     public void RollTheDice()
     {
         DiceTotal = 0;
@@ -35,6 +40,8 @@ public class DiceRoller : MonoBehaviour
             {
                 this.transform.GetChild(i).GetComponent<Image>().sprite = DiceImageOne[Random.Range(0, DiceImageOne.Length)];
             }
+
+            doneRolling = true;
         }
         Debug.Log("Rolled: " + DiceTotal);
     }
