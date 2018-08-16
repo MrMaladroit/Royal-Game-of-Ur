@@ -4,13 +4,32 @@ public class PlayerStone : MonoBehaviour
 {
     private DiceRoller theDiceRoller;
     private Tile currentTile;
+    private Vector3 targetPosition;
+    private Vector3 velocity;
+    private float smoothTime = 0.25f;
 
     public Tile StartingTile;
 
     private void Start()
     {
         theDiceRoller = FindObjectOfType<DiceRoller>();
+        targetPosition = this.transform.position;
     }
+
+    private void Update()
+    {
+        if(this.transform.position != targetPosition)
+        {
+            this.transform.position = Vector3.SmoothDamp(this.transform.position, targetPosition, ref velocity, smoothTime);
+        }
+    }
+
+    private void SetNewTargetPosition(Vector3 position)
+    {
+        targetPosition = position;
+        velocity = Vector3.zero;
+    }
+
 
     private void OnMouseUp()
     {
@@ -54,7 +73,7 @@ public class PlayerStone : MonoBehaviour
             return;
         }
 
-        this.transform.position = finalTile.transform.position;
+        SetNewTargetPosition(finalTile.transform.position);
         currentTile = finalTile;
 
     }
